@@ -1,7 +1,6 @@
 #include"myHeader.h"
 #include<string.h>
-#include<linux/ktime.h>
-#include<linux/timekeeping.h>
+#include<linux/time.h>
 
 struct timespec getTime(void){
 	struct timespec time;

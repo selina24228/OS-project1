@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<signal.h>
 #define err_sys(a) {perror(a);exit(0);}
-#define input_num 3 //./child name time
+#define input_num 3  //./child name time
 int main(int argc,char* argv[]){
 	if(argc!=input_num){
 		err_sys("wrong input");

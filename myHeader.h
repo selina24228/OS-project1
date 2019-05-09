@@ -6,15 +6,21 @@
 #define MAXTASK 1000
 
 struct timespec getTime(void);
+int setCPU(void);
 
-
+typedef struct node{
+	pid_t pid;
+	int priority;
+}Node;
 typedef struct queue{
-	pid_t task[MAXTASK];
+	Node task[MAXTASK];
 	int n;
 }Queue;
 
-void initQue(Queue* que);
+Queue* initQue(void);
 int isEmpty(Queue que);
 pid_t pop(Queue que);
-void push(pid_t pid,Queue que);
+void push(Node pid,Queue* que);
+void heapifly_min(int n,Queue* que);
+void heapifly_max(int n,Queue* que);
 

@@ -5,7 +5,7 @@
 #include<signal.h>
 #include<sche.h>
 #define err_sys(a) {perror(a);exit(0);}
-
+#define cycle 8 
 static Queue que;
 
 static void sig_usr1(int signo);
@@ -28,7 +28,7 @@ int main(int argc,char* argv[]){
 			pid_t pid=pop(&que);
 			struct sched_param param;
 			param.sched_priority=sched_get_priority_max(SCHED_FIFO);
-			if(sched_setschedular(pid,SCHED_FIFO,param)<0){
+			if(sched_setschedular(pid,SCHED_RR,param)<0){
 				err_sys("setschedular denied");
 			}
 		}

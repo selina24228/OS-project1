@@ -14,6 +14,7 @@ typedef struct process{
 }Process;
 
 int check_type(char type[]);
+int compare(const void* prt1,const void* ptr2);
 
 int main(int argc,char* argv[]){
 	//io
@@ -30,6 +31,7 @@ int main(int argc,char* argv[]){
 	qsort(tasks,N,sizeof(Process),compare);
 	int type_num;
 	int fd[2];
+	pid_t pid;
 	if(pipe(fd)<0){
 		err_sys("pipe error");
 	}
@@ -58,7 +60,7 @@ int main(int argc,char* argv[]){
 	//clock
 	int counter=0,index=0;
 	while(index!=N){
-		while(counter<task[index].R){
+		while(counter<tasks[index].R){
 			volatile unsigned long i;
 			for(i=0;i<1000000UL;i++);
 			counter++;
